@@ -9,10 +9,14 @@ const CATEGORIES_INITIAL_STATE = {
   error: null
 };
 
-export const getCategoriesMap = createAsyncThunk(
+const getCategoriesMap = createAsyncThunk(
   'category/getCategoriesMap',
   async () => {
-    return await getCategoriesAndDocuments('categories')
+    try {
+      return await getCategoriesAndDocuments('categories');
+    } catch (error) {
+      return error;
+    }
   }
 )
 
@@ -36,6 +40,5 @@ const categoriesSlice = createSlice({
   }
 });
 
-
-
+export { getCategoriesMap };
 export const categoriesReducer = categoriesSlice.reducer;

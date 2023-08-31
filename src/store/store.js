@@ -4,7 +4,12 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import logger from 'redux-logger';
 
-const middleWares = [process.env.NODE_ENV === 'development' && logger].filter(
+import { productsApi } from './api/api.slice';
+
+const middleWares = [
+  // (process.env.NODE_ENV === 'development' && logger),
+  productsApi.middleware
+].filter(
   Boolean
 );
 
